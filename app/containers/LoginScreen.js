@@ -33,7 +33,7 @@ class LoginScreen extends Component {
 
             <View style={styles.form}>
               <CustomFormLabel>E-POSTA</CustomFormLabel>
-              <CustomFormInput placeholder="abc@gmail.com"/>
+              <CustomFormInput placeholder="abc@gmail.com" keyboardType="email-address"/>
 
               <CustomDivider/>
 

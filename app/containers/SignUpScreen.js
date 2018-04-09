@@ -38,7 +38,7 @@ class SignUpScreen extends Component {
               <CustomDivider/>
 
               <CustomFormLabel>EMAIL</CustomFormLabel>
-              <CustomFormInput placeholder="abc@gmail.com"/>
+              <CustomFormInput placeholder="abc@gmail.com" keyboardType="email-address"/>
 
               <CustomDivider/>
 

@@ -14,6 +14,7 @@ const ApplicationStyles = {
       backgroundColor: Colors.fullWhite,
       paddingLeft: 60,
       paddingTop: 116,
+      paddingBottom: 16,
     },
   },
 };
