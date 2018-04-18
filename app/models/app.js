@@ -1,45 +1,69 @@
-import { createAction, NavigationActions, Storage } from '../utils'
-import * as authService from '../services/auth'
+import casual from "casual-browserify"
+import { arrayOf } from "../utils/constants"
+
+/*eslint-disable*/
 
 export default {
-  namespace: 'app',
+  namespace: "app",
   state: {
     login: false,
     loading: true,
-    fetching: false,
+    fetching: false
   },
   reducers: {
     updateState(state, { payload }) {
       return { ...state, ...payload }
-    },
+    }
   },
   effects: {
-    *loadStorage(action, { call, put }) {
-      const login = yield call(Storage.get, 'login', false)
-      yield put(createAction('updateState')({ login, loading: false }))
+    * loadStorage(action, { call, put }) {
+
     },
-    *login({ payload }, { call, put }) {
-      yield put(createAction('updateState')({ fetching: true }))
-      const login = yield call(authService.login, payload)
-      if (login) {
-        yield put(
-          NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Main' })],
-          })
-        )
-      }
-      yield put(createAction('updateState')({ login, fetching: false }))
-      Storage.set('login', login)
+    * login({ payload }, { call, put }) {
+
+
     },
-    *logout(action, { call, put }) {
-      yield call(Storage.set, 'login', false)
-      yield put(createAction('updateState')({ login: false }))
-    },
+    * logout(action, { call, put }) {
+
+
+    }
   },
   subscriptions: {
     setup({ dispatch }) {
-      dispatch({ type: 'loadStorage' })
-    },
-  },
+
+      casual.define("feed", () => (
+        {
+          id: casual.uuid,
+          imageIndex: casual.integer(1, 15),
+          text: casual.sentence,
+          createdAt: casual.date("DD MMM YYYY"),
+          user: {
+            name: casual.first_name,
+            surname: casual.last_name,
+            profileUrl: `https://randomuser.me/api/portraits/men/${casual.integer(1, 20)}.jpg`
+          }
+        }
+      ))
+
+      casual.define("conceptItem", () => (
+        {
+          id: casual.uuid,
+          imageIndex: casual.integer(1, 15),
+          title: casual.word,
+          followers: casual.double(1, 99),
+          feeds: arrayOf(Math.random() * 10, casual._feed)
+        }
+      ))
+
+      casual.define("concept", () => (
+        {
+          id: casual.uuid,
+          title: casual.word.toUpperCase(),
+          subtitle: casual.short_description,
+          items: arrayOf(Math.random() * 10, casual._conceptItem)
+        }
+      ))
+
+    }
+  }
 }

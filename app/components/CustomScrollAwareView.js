@@ -4,6 +4,7 @@ import styles from "./styles/CustomScrollAwareViewStyle"
 
 const CustomScrollAwareView = props => (
   <ScrollView style={styles.mainContainer}
+              contentContainerStyle={styles.containerContent}
               keyboardShouldPersistTaps="handled"
               {...props}
   />

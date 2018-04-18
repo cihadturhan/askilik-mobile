@@ -12,10 +12,12 @@ const ApplicationStyles = {
     container: {
       flex: 1,
       backgroundColor: Colors.fullWhite,
-      paddingLeft: 60,
-      paddingTop: 116,
-      paddingBottom: 16,
     },
+    containerContent: {
+      paddingLeft: 60,
+      paddingTop: 86,
+      paddingBottom: 16,
+    }
   },
 };
 

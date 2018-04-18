@@ -1,15 +1,20 @@
 import React, { PureComponent } from 'react'
-import { View, TouchableOpacity, Image } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements'
 import styles from './styles/HeaderLeftStyle'
-import { Images } from '../themes';
 
 export default class HeaderLeft extends PureComponent {
 
   handleMenuPress = () => {
-    const { screenProps } = this.props;
-    screenProps.openDrawer();
-  };
+    const { navigation } = this.props
+    if (navigation.state.index === 0) {
+      navigation.navigate("DrawerOpen")
+    } else {
+      navigation.navigate("DrawerClose")
+    }
+
+    //navigation.navigate("DrawerToggle")
+  }
 
   handleBackPress = () => {
     const { navigation: { goBack } } = this.props;

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Text, View } from "react-native"
 import { connect } from "react-redux"
+import { NavigationActions, StackNavigator } from "react-navigation"
 import CustomScrollAwareView from "../components/CustomScrollAwareView"
 import styles from "./styles/LoginScreenStyle"
 import { Images } from "../themes"
@@ -16,6 +17,17 @@ class LoginScreen extends Component {
     title: "",
     hideMenu: true,
     hideBack: true
+  }
+
+  handleLoginPress = () => {
+    // this.props.navigation.navigate('AuthDrawer');
+    const action = NavigationActions.reset({
+      index: 0,
+      key: null,
+      actions: [NavigationActions.navigate({ routeName: "AuthDrawer" })]
+    });
+
+    this.props.dispatch(action);
   }
 
   render() {
@@ -42,7 +54,7 @@ class LoginScreen extends Component {
             </View>
 
             <View style={{ marginTop: 24 }}>
-              <CustomButton title="GİRİŞ YAP" type="primary"/>
+              <CustomButton title="GİRİŞ YAP" type="primary" onPress={this.handleLoginPress}/>
             </View>
 
             <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 24 }}>
@@ -58,8 +70,8 @@ class LoginScreen extends Component {
             </View>
 
             <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 24 }}>
-              <CustomButton title="CREATE ACCOUNT" type="secondary" onPress={()=> this.props.navigation.navigate('SignUpScreen')}/>
-              <CustomButton title="NEED HELP?" type="secondary"/>
+              <CustomButton title="HESAP OLUŞTUR" type="secondary" onPress={()=> this.props.navigation.navigate('SignUpScreen')}/>
+              <CustomButton title="YARDIM AL" type="secondary"/>
             </View>
           </View>
         </CustomScrollAwareView>

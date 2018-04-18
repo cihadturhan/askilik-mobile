@@ -1,45 +1,51 @@
-import { Animated, Easing } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { Animated, Easing } from "react-native"
+import { StackNavigator, DrawerNavigator, SwitchNavigator } from "react-navigation"
 
-import { customNavigationOptions } from './util';
+import { customNavigationOptions } from "./util"
 import LoginScreen from "../containers/LoginScreen"
 import SignUpScreen from "../containers/SignUpScreen"
+import ConceptsScreen from "../containers/ConceptsScreen"
+import ConceptDetailScreen from "../containers/ConceptDetailScreen"
+import DrawerContainer from "../components/CustomDrawer"
 
+const NonAuthStack = StackNavigator({
+  LoginScreen: { screen: LoginScreen },
+  SignUpScreen: { screen: SignUpScreen }
+}, {
+  // Default config for all screens
+  initialRouteName: "LoginScreen",
+  navigationOptions: customNavigationOptions
+})
 
-const AppNavigation = StackNavigator(
-  {
-    LoginScreen: { screen: LoginScreen },
-    SignUpScreen: { screen: SignUpScreen },
+const ConceptStack = StackNavigator({
+    ConceptsScreen: { screen: ConceptsScreen },
+    ConceptDetailScreen: { screen: ConceptDetailScreen }
   },
   {
     // Default config for all screens
-    initialRouteName: 'LoginScreen',
-    navigationOptions: customNavigationOptions,
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 300,
-        easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing,
-      },
-      screenInterpolator: sceneProps => {
-        const { layout, position, scene } = sceneProps
-        const { index } = scene
-
-        const height = layout.initHeight
-        const translateY = position.interpolate({
-          inputRange: [index - 1, index, index + 1],
-          outputRange: [height, 0, 0],
-        })
-
-        const opacity = position.interpolate({
-          inputRange: [index - 1, index - 0.99, index],
-          outputRange: [0, 1, 1],
-        })
-
-        return { opacity, transform: [{ translateY }] }
-      },
-    }),
+    initialRouteName: "ConceptsScreen",
+    // navigationOptions: customNavigationOptions,
+    headerMode: "none"
   }
 )
 
-export default AppNavigation;
+const AuthDrawer = DrawerNavigator({
+  ConceptStack: { screen: ConceptStack, navigationOptions: { drawerLabel: "Concepts" } },
+  ConceptStack2: { screen: ConceptStack, navigationOptions: { drawerLabel: "More Concepts" } }
+}, {
+  contentComponent: DrawerContainer,
+})
+
+const AppNavigation = StackNavigator(
+  {
+    NonAuthStack: { screen: NonAuthStack },
+    AuthDrawer: { screen: AuthDrawer  }
+  },
+  {
+    // Default config for all screens
+    initialRouteName: "NonAuthStack",
+    navigationOptions: customNavigationOptions,
+  }
+)
+
+export default AppNavigation
