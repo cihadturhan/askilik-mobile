@@ -24,7 +24,7 @@ const FeedItem = props => {
       <View style={{ flexDirection: "row" }}>
         <Image source={{ uri: profileUrl }} style={{ width: 40, height: 40 }}/>
         <View style={{ marginLeft: 8 }}>
-          <Text style={[styles.textStatusPersona, { marginBottom: 8 }]}>{name} {surname}</Text>
+          <Text style={[styles.textStatusPersona, { marginBottom: 6 }]}>{name} {surname}</Text>
           <Text style={styles.textStatusPersona}>{createdAt}</Text>
         </View>
       </View>

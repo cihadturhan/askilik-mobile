@@ -2,7 +2,8 @@ import React from 'react'
 import { AppRegistry } from 'react-native'
 
 import dva from './utils/dva'
-import Router, { routerMiddleware } from './router'
+import { routerMiddleware } from './navigation/Router';
+import SideMenuWithRouter from './navigation/SideMenuWithRouter';
 
 import appModel from './models/app'
 import routerModel from './models/router'
@@ -16,6 +17,6 @@ const app = dva({
   },
 })
 
-const App = app.start(<Router />)
+const App = app.start(<SideMenuWithRouter/>);
 
 AppRegistry.registerComponent('askilikMobile', () => App)

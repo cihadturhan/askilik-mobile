@@ -35,7 +35,7 @@ export default {
         {
           id: casual.uuid,
           imageIndex: casual.integer(1, 15),
-          text: casual.sentence,
+          text: casual.sentences(2),
           createdAt: casual.date("DD MMM YYYY"),
           user: {
             name: casual.first_name,
@@ -51,7 +51,7 @@ export default {
           imageIndex: casual.integer(1, 15),
           title: casual.word,
           followers: casual.double(1, 99),
-          feeds: arrayOf(Math.random() * 10, casual._feed)
+          feeds: arrayOf(5 + Math.random() * 10, casual._feed)
         }
       ))
 
@@ -60,7 +60,7 @@ export default {
           id: casual.uuid,
           title: casual.word.toUpperCase(),
           subtitle: casual.short_description,
-          items: arrayOf(Math.random() * 10, casual._conceptItem)
+          items: arrayOf(5 + Math.random() * 10, casual._conceptItem)
         }
       ))
 

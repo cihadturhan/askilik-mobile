@@ -1,5 +1,5 @@
 import { delay, NavigationActions } from '../utils'
-import { routerReducer } from '../router'
+import { routerReducer } from '../navigation/Router'
 
 const actions = Object.values(NavigationActions).filter(
   x => typeof x === 'string' && x.startsWith('Navigation/')

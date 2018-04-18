@@ -1,35 +1,29 @@
-import React, { PureComponent } from 'react'
-import { View, TouchableOpacity } from 'react-native'
-import { Icon } from 'react-native-elements'
-import styles from './styles/HeaderLeftStyle'
+import React, { PureComponent } from "react"
+import { View, TouchableOpacity } from "react-native"
+import { Icon } from "react-native-elements"
+import styles from "./styles/HeaderLeftStyle"
 
 export default class HeaderLeft extends PureComponent {
 
   handleMenuPress = () => {
-    const { navigation } = this.props
-    if (navigation.state.index === 0) {
-      navigation.navigate("DrawerOpen")
-    } else {
-      navigation.navigate("DrawerClose")
-    }
-
-    //navigation.navigate("DrawerToggle")
+    const { screenProps } = this.props
+    screenProps.openDrawer()
   }
 
   handleBackPress = () => {
-    const { navigation: { goBack } } = this.props;
-    goBack(null);
-  };
+    const { navigation: { goBack } } = this.props
+    goBack(null)
+  }
 
   render() {
-    const hitSlop = { top: 8, bottom: 8, left: 8, right: 8 };
-    const { navigationOptions } = this.props;
-    const { hideBack, hideMenu } = navigationOptions;
+    const hitSlop = { top: 8, bottom: 8, left: 8, right: 8 }
+    const { navigationOptions } = this.props
+    const { hideBack, hideMenu } = navigationOptions
 
     return (
       <View style={styles.container}>
         {!hideBack && <TouchableOpacity
-          hitSlop={ hitSlop }
+          hitSlop={hitSlop}
           onPress={this.handleBackPress}
           style={styles.iconButton}
         >
@@ -37,7 +31,7 @@ export default class HeaderLeft extends PureComponent {
         </TouchableOpacity>
         }
         {!hideMenu && (<TouchableOpacity
-          hitSlop={ hitSlop }
+          hitSlop={hitSlop}
           onPress={this.handleMenuPress}
           style={styles.iconButton}
         >

@@ -20,14 +20,7 @@ class LoginScreen extends Component {
   }
 
   handleLoginPress = () => {
-    // this.props.navigation.navigate('AuthDrawer');
-    const action = NavigationActions.reset({
-      index: 0,
-      key: null,
-      actions: [NavigationActions.navigate({ routeName: "AuthDrawer" })]
-    });
-
-    this.props.dispatch(action);
+      this.props.navigation.navigate('AuthSwitch');
   }
 
   render() {

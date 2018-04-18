@@ -1,12 +1,11 @@
-import { Animated, Easing } from "react-native"
-import { StackNavigator, DrawerNavigator, SwitchNavigator } from "react-navigation"
+import { StackNavigator, SwitchNavigator } from "react-navigation"
 
 import { customNavigationOptions } from "./util"
 import LoginScreen from "../containers/LoginScreen"
 import SignUpScreen from "../containers/SignUpScreen"
 import ConceptsScreen from "../containers/ConceptsScreen"
 import ConceptDetailScreen from "../containers/ConceptDetailScreen"
-import DrawerContainer from "../components/CustomDrawer"
+import ProfileScreen from "../containers/ProfileScreen"
 
 const NonAuthStack = StackNavigator({
   LoginScreen: { screen: LoginScreen },
@@ -24,27 +23,35 @@ const ConceptStack = StackNavigator({
   {
     // Default config for all screens
     initialRouteName: "ConceptsScreen",
-    // navigationOptions: customNavigationOptions,
-    headerMode: "none"
+    navigationOptions: customNavigationOptions
   }
 )
 
-const AuthDrawer = DrawerNavigator({
-  ConceptStack: { screen: ConceptStack, navigationOptions: { drawerLabel: "Concepts" } },
-  ConceptStack2: { screen: ConceptStack, navigationOptions: { drawerLabel: "More Concepts" } }
+const ProfileStack = StackNavigator({
+    ProfileScreen: { screen: ProfileScreen }
+  },
+  {
+    // Default config for all screens
+    initialRouteName: "ProfileScreen",
+    navigationOptions: customNavigationOptions
+  }
+)
+
+const AuthSwitch = SwitchNavigator({
+  ConceptStack: { screen: ConceptStack },
+  ProfileStack: { screen: ProfileStack }
 }, {
-  contentComponent: DrawerContainer,
+  initialRouteName: "ConceptStack"
 })
 
-const AppNavigation = StackNavigator(
-  {
+const AppNavigation = SwitchNavigator({
     NonAuthStack: { screen: NonAuthStack },
-    AuthDrawer: { screen: AuthDrawer  }
+    AuthSwitch: { screen: AuthSwitch }
   },
   {
     // Default config for all screens
     initialRouteName: "NonAuthStack",
-    navigationOptions: customNavigationOptions,
+    header: "none"
   }
 )
 
