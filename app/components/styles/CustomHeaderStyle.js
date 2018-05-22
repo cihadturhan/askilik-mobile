@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     height: 60,
-    paddingLeft: 60,
+    paddingLeft: 30,
     position: 'absolute',
     top: 0,
     right: 0,

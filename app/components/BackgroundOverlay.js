@@ -5,7 +5,7 @@ import styles from "./styles/BackgroundOverlayStyle"
 
 const BackgroundOverlay = props => (
   <View style={styles.container}>
-    <Image {...props} style={styles.image}/>
+    <Image {...props} style={[styles.image, props.style]}/>
   </View>
 )
 

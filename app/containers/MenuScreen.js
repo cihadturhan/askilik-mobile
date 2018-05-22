@@ -24,12 +24,18 @@ class MenuScreen extends Component {
     drawerMethods.closeDrawer()
   }
 
+  signOut = () => {
+    const { dispatch, drawerMethods } = this.props
+    dispatch({ type: "userModel/signOut" })
+    drawerMethods.closeDrawer()
+  }
+
 
   render() {
 
     const _ = this.props
 
-    const iconRest = { type: "feather", size: 18, color: Colors.midGray1, style: {marginRight: 24} }
+    const iconRest = { type: "feather", size: 18, color: Colors.midGray1, style: { marginRight: 24 } }
 
     return (
       <View style={styles.container}>
@@ -48,6 +54,8 @@ class MenuScreen extends Component {
           <MenuListItem leftIcon={{ name: "help-circle", ...iconRest }} title="Yardım" onPress={() => {
             this.navigate("HelpScreen")
           }}/>
+
+          <MenuListItem leftIcon={{ name: "log-out", ...iconRest }} title="Çıkış Yap" onPress={this.signOut}/>
 
         </List>
       </View>

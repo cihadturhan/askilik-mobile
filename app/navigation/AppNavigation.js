@@ -6,13 +6,15 @@ import SignUpScreen from "../containers/SignUpScreen"
 import ConceptsScreen from "../containers/ConceptsScreen"
 import ConceptDetailScreen from "../containers/ConceptDetailScreen"
 import ProfileScreen from "../containers/ProfileScreen"
+import LoadingScreen from "../containers/LoadingScreen"
 
 const NonAuthStack = StackNavigator({
+  LoadingScreen: { screen: LoadingScreen },
   LoginScreen: { screen: LoginScreen },
   SignUpScreen: { screen: SignUpScreen }
 }, {
   // Default config for all screens
-  initialRouteName: "LoginScreen",
+  initialRouteName: "LoadingScreen",
   navigationOptions: customNavigationOptions
 })
 

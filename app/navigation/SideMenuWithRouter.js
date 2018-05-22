@@ -1,8 +1,10 @@
 import React, { PureComponent } from "react"
+import { View } from "react-native"
 import Drawer from "react-native-drawer"
 import Router from "./Router"
 
 import LeftMenuScreen from "../containers/MenuScreen"
+import CustomToast from "../components/CustomToast"
 
 export default class SideMenuWithRouter extends PureComponent {
 
@@ -26,16 +28,21 @@ export default class SideMenuWithRouter extends PureComponent {
       closeDrawer: this.closeDrawer
     }
 
-    return (<Drawer
-      ref={ref => (this.drawer = ref)}
-      type="displace"
-      animation="easeInOut"
-      content={<LeftMenuScreen drawerMethods={drawerMethods}/>}
-      tapToClose
-      openDrawerOffset={viewport => viewport.width - 180}
-      panOpenMask={-1}
-    >
-      <Router screenProps={drawerMethods}/>
-    </Drawer>)
+    return (<View style={{ flex: 1 }}>
+      <Drawer
+        ref={ref => {
+          this.drawer = ref
+        }}
+        type="displace"
+        animation="easeInOut"
+        content={<LeftMenuScreen drawerMethods={drawerMethods}/>}
+        tapToClose
+        openDrawerOffset={viewport => viewport.width - 180}
+        panOpenMask={-1}
+      >
+        <Router screenProps={drawerMethods}/>
+      </Drawer>
+      <CustomToast/>
+    </View>)
   }
 }

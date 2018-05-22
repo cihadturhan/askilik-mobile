@@ -7,10 +7,11 @@ import SideMenuWithRouter from './navigation/SideMenuWithRouter';
 
 import appModel from './models/app'
 import routerModel from './models/router'
+import userModel from './models/UserModel'
 
 const app = dva({
   initialState: {},
-  models: [appModel, routerModel],
+  models: [appModel, routerModel, userModel],
   onAction: [routerMiddleware],
   onError(e) {
     console.log('onError', e)

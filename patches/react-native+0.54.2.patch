@@ -1,0 +1,26 @@
+patch-package
+--- a/node_modules/react-native/local-cli/server/util/attachWebsocketServer.js
++++ b/node_modules/react-native/local-cli/server/util/attachWebsocketServer.js
+@@ -46,6 +46,8 @@ function attachWebsocketServer<TClient: Object>({
+     path: path,
+   });
+ 
++  let oldClient = null;
++
+   wss.on('connection', async ws => {
+     let connected = true;
+     const url = ws.upgradeReq.url;
+@@ -56,7 +58,13 @@ function attachWebsocketServer<TClient: Object>({
+       }
+     };
+ 
++    if(oldClient){
++      websocketServer.onClientDisconnect(oldClient);
++    }
++
+     const client = await websocketServer.onClientConnect(url, sendFn);
++    oldClient = client;
++
+ 
+     ws.on('error', e => {
+       websocketServer.onClientError && websocketServer.onClientError(client, e);

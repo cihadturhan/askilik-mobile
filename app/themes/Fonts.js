@@ -15,6 +15,12 @@ export default {
     color: colors.fullBlack,
     letterSpacing: 4
   },
+  titleStats: {
+    fontFamily: "Helvetica",
+    fontWeight: "bold",
+    fontSize: 18,
+    color: colors.fullBlack,
+  },
   subTitle: {
     fontFamily: "Helvetica",
     fontSize: 16,

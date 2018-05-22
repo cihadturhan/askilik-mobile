@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { Text, View } from "react-native"
 import { connect } from "react-redux"
-import { NavigationActions, StackNavigator } from "react-navigation"
 import CustomScrollAwareView from "../components/CustomScrollAwareView"
 import styles from "./styles/LoginScreenStyle"
 import { Images } from "../themes"
@@ -19,12 +18,26 @@ class LoginScreen extends Component {
     hideBack: true
   }
 
+  state = {
+    email: "",
+    password: ""
+  }
+
   handleLoginPress = () => {
-      this.props.navigation.navigate('AuthSwitch');
+    const { email, password } = this.state
+    this.props.dispatch({ type: "userModel/signInWithPassword", payload: { email, password } })
+  }
+
+  handleFacebookLoginPress = () => {
+    this.props.dispatch({ type: "userModel/signInWithFacebook" })
+  }
+
+  handleTextChange = (key, value) => {
+    this.setState({ [key]: value })
   }
 
   render() {
-    const _ = this.props
+    const { email, password } = this.state
 
 
     return (
@@ -38,12 +51,14 @@ class LoginScreen extends Component {
 
             <View style={styles.form}>
               <CustomFormLabel>E-POSTA</CustomFormLabel>
-              <CustomFormInput placeholder="abc@gmail.com" keyboardType="email-address"/>
+              <CustomFormInput placeholder="abc@gmail.com" value={email} keyboardType="email-address"
+                               onChangeText={text => this.handleTextChange("email", text)}/>
 
               <CustomDivider/>
 
               <CustomFormLabel>ŞİFRE</CustomFormLabel>
-              <CustomFormInput placeholder="*******" secureTextEntry={true}/>
+              <CustomFormInput placeholder="*******" value={password} secureTextEntry
+                               onChangeText={text => this.handleTextChange("password", text)}/>
             </View>
 
             <View style={{ marginTop: 24 }}>
@@ -59,11 +74,12 @@ class LoginScreen extends Component {
             </View>
 
             <View style={{ marginTop: 24 }}>
-              <CustomButton title="FACEBOOK" type="primary"/>
+              <CustomButton title="FACEBOOK" type="primary" onPress={this.handleFacebookLoginPress}/>
             </View>
 
             <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 24 }}>
-              <CustomButton title="HESAP OLUŞTUR" type="secondary" onPress={()=> this.props.navigation.navigate('SignUpScreen')}/>
+              <CustomButton title="HESAP OLUŞTUR" type="secondary"
+                            onPress={() => this.props.navigation.navigate("SignUpScreen")}/>
               <CustomButton title="YARDIM AL" type="secondary"/>
             </View>
           </View>

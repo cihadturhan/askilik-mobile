@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1013175395046",
+    "firebase_url": "https://askilik-app.firebaseio.com",
+    "project_id": "askilik-app",
+    "storage_bucket": "askilik-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013175395046:android:a98119e0ca515e33",
+        "android_client_info": {
+          "package_name": "com.askilikmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013175395046-9hh0qqcfi143esa5nr7acma4nttlgb5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.askilikmobile",
+            "certificate_hash": "64b7129b41cb5b1d1e9026e9ce29a989c4fd335d"
+          }
+        },
+        {
+          "client_id": "1013175395046-iko9rp1misea4v0nd0tvt832cnn89km2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3aDwmN2Y_FNPl8q8Wnv7TfFvY1GWOE9g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013175395046-iko9rp1misea4v0nd0tvt832cnn89km2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

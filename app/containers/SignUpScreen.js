@@ -18,9 +18,26 @@ class SignUpScreen extends Component {
     hideMenu: true
   }
 
-  render() {
-    const _ = this.props
+  state = {
+    displayName: "",
+    email: "",
+    password: ""
+  }
 
+  signInWithPassword = () => {
+    const { email, password, displayName } = this.state
+    this.props.dispatch({
+      type: "userModel/createWithPassword",
+      payload: { email, password, displayName }
+    })
+  }
+
+  handleTextChange = (key, value) => {
+    this.setState({ [key]: value })
+  }
+
+  render() {
+    const { email, password, displayName } = this.state
 
     return (
       <View style={[styles.mainContainer, { position: "relative" }]}>
@@ -33,21 +50,35 @@ class SignUpScreen extends Component {
 
             <View style={loginStyles.form}>
               <CustomFormLabel>AD</CustomFormLabel>
-              <CustomFormInput placeholder="Mehmet Yılmaz"/>
+              <CustomFormInput
+                value={displayName}
+                placeholder="Mehmet Yılmaz"
+                onChangeText={text => this.handleTextChange("displayName", text)}
+              />
 
               <CustomDivider/>
 
               <CustomFormLabel>EMAIL</CustomFormLabel>
-              <CustomFormInput placeholder="abc@gmail.com" keyboardType="email-address"/>
+              <CustomFormInput
+                value={email}
+                placeholder="abc@gmail.com"
+                keyboardType="email-address"
+                onChangeText={text => this.handleTextChange("email", text)}
+              />
 
               <CustomDivider/>
 
               <CustomFormLabel>ŞİFRE</CustomFormLabel>
-              <CustomFormInput placeholder="*******" secureTextEntry={true}/>
+              <CustomFormInput
+                value={password}
+                placeholder="*******"
+                secureTextEntry
+                onChangeText={text => this.handleTextChange("password", text)}
+              />
             </View>
 
             <View style={{ marginTop: 24 }}>
-              <CustomButton title="KAYIT OL" type="primary"/>
+              <CustomButton title="KAYIT OL" type="primary" onPress={this.signInWithPassword}/>
             </View>
           </View>
         </CustomScrollAwareView>
